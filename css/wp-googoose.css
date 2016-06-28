@@ -1,0 +1,10 @@
+.tt-menu {
+    width: 100% !important;
+    background: #FFFFFF !important;
+}
+.tt-suggestion {
+    padding: 5px !important;
+}
+.clearfix {
+    clear: both;
+}
