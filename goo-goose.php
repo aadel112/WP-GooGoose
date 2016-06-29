@@ -49,7 +49,6 @@ function wp_googoose_admin_add_page() {
 function wp_googoose_options_page() {
 ?>
     <div>
-    <h2>WP GooGoose</h2>
     <form action="options.php" method="post">
         <?php settings_fields( 'wp_googoose_options' ); ?>
         <?php do_settings_sections( 'wp_googoose' ); ?>
@@ -72,6 +71,15 @@ function wp_googoose_section_text() {?>
     Issues and the like are tracked on github. You can also view the project there. Contributions can be made by following <a href="https://www.paypal.me/aadel112/5">this</a> donation link to paypal. Additionally, the project this is based off is on github <a href="https://github.com/aadel112/googoose">too</a>.
     </p>
     <p>The github location for WP GooGoose is <a href="https://github.com/aadel112/WP-GooGoose">here</a>
+    </p>
+
+    <h2>Instructions</h2>
+    <p>To use, edit an area with the tinymce editor, for example a page:
+        <ol>
+            <li>At any time, click the Googoosify button. This will make the content display a "MS Word" button below it which will allow exporting to Microsoft Word.</li>
+            <li>If you want the document to have a header or footer, those options are available.</li>
+            <li>Current and total page count macros are also available.</li>
+        </ol>
     </p>
 <?php 
 } 
