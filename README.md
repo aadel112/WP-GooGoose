@@ -35,4 +35,10 @@ Simply set it up in the settings tab, then add or edit an existing post/page, an
 2. The result as html
 3. The final result
 
+![WP GooGoose in action](https://github.com/aadel112/WP-GooGoose/blob/master/assets/screenshot-1.jpg "WP GooGoose in action")
+
+![The result as html](https://github.com/aadel112/WP-GooGoose/blob/master/assets/screenshot-2.jpg "The result as html ")
+
+![The final result](https://github.com/aadel112/WP-GooGoose/blob/master/assets/screenshot-3.jpg "The final result")
+
 
