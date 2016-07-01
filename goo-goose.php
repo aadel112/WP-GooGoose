@@ -19,7 +19,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-do_main();
+wp_googoose_do_main();
 
 /**
  * Proper way to enqueue scripts and styles.
@@ -31,7 +31,7 @@ function wp_enqueue_googoose() {
 }
 
 # adding the admin only scripts and styles
-function wp_enqueue_admin() {
+function wp_googoose_enqueue_admin() {
     wp_enqueue_script( 'typeahead',  plugin_dir_url(__FILE__) . '/js/typeahead.js', array(), null, true );
     wp_enqueue_script( 'goo-goose',  plugin_dir_url(__FILE__) . '/js/googoose.typeahead.js', array(), null, true );
 
@@ -85,7 +85,7 @@ function wp_googoose_section_text() {?>
 } 
 
 # The default Admin Settings Values
-function get_default_options() {
+function wp_googoose_get_default_options() {
     return array(
         'top_margin' => '1.0in',
         'right_margin' => '1.0in',
@@ -106,31 +106,31 @@ function get_default_options() {
 
 # creates the admin settings page typeaheads, and handles all form input, etc
 function wp_googoose_setting_display() {
-    $gg = get_option('wp_googoose_options', get_default_options());
+    $gg = get_option('wp_googoose_options', wp_googoose_get_default_options());
 ?>
     <table>
     <?php 
-        create_tr( 'Top Margin', $gg );
-        create_tr( 'Right Margin', $gg );
-        create_tr( 'Bottom Margin', $gg );
-        create_tr( 'Left Margin', $gg );
-        create_tr( 'Zoom', $gg );
-        create_tr( 'Size', $gg );
-        create_tr( 'Top Header Margin', $gg ); 
-        create_tr( 'Right Header Margin', $gg );
-        create_tr( 'Bottom Header Margin', $gg );
-        create_tr( 'Left Header Margin', $gg );
-        create_tr( 'Top Footer Margin', $gg ); 
-        create_tr( 'Right Footer Margin', $gg );
-        create_tr( 'Bottom Footer Margin', $gg );
-        create_tr( 'Left Footer Margin', $gg );
+        wp_googoose_create_tr( 'Top Margin', $gg );
+        wp_googoose_create_tr( 'Right Margin', $gg );
+        wp_googoose_create_tr( 'Bottom Margin', $gg );
+        wp_googoose_create_tr( 'Left Margin', $gg );
+        wp_googoose_create_tr( 'Zoom', $gg );
+        wp_googoose_create_tr( 'Size', $gg );
+        wp_googoose_create_tr( 'Top Header Margin', $gg ); 
+        wp_googoose_create_tr( 'Right Header Margin', $gg );
+        wp_googoose_create_tr( 'Bottom Header Margin', $gg );
+        wp_googoose_create_tr( 'Left Header Margin', $gg );
+        wp_googoose_create_tr( 'Top Footer Margin', $gg ); 
+        wp_googoose_create_tr( 'Right Footer Margin', $gg );
+        wp_googoose_create_tr( 'Bottom Footer Margin', $gg );
+        wp_googoose_create_tr( 'Left Footer Margin', $gg );
     ?>
     </table>
 <?php 
 }
 
 # helper
-function create_tr( $label, $gg ) {
+function wp_googoose_create_tr( $label, $gg ) {
 $ta_type = !strcmp( $label, 'Size' ) ? 'sizes' : ( stristr( $label, 'margin' ) ? 'margins' : 'zooms' );
 $field = strtolower( str_replace( ' ', '_', $label ) );
 ?>
@@ -151,7 +151,7 @@ $field = strtolower( str_replace( ' ', '_', $label ) );
 
 # validates admin settings page inputs
 function wp_googoose_options_validate( $in ) {
-    $default = get_default_options();
+    $default = wp_googoose_get_default_options();
     foreach( $in as $k => $v ) {
         $in[$k] = trim( $in[$k] );
         if(!$v) {
@@ -161,18 +161,6 @@ function wp_googoose_options_validate( $in ) {
         # TODO - should do more validation here to prevent options that aren't in the typeahead
     }   
     return $in; 
-}
-
-# unused right now, but I may decide to upload svgs, and canvases later on, and
-# display the url in the dom
-function wp_googoose_unlink() {
-    $uploads = scandir(__DIR__ . '/uploads'); 
-    foreach( $uploads as $k => $v ) {
-        $ff = __DIR__ . "/uploads/$v";
-        if( time() - filemtime( $ff ) >= 120 ) {
-            unlink( $ff );
-        }
-    }
 }
 
 # wp googoose activation hook, activation just schedules the unlink function to run hourly
@@ -186,11 +174,11 @@ function wp_googoose_activate() {
 function wp_googoose_tinymce() {
     add_filter( "mce_external_plugins", "wp_googoose_tinymce_add_buttons" );
     add_filter( 'mce_buttons', 'wp_googoose_tinymce_register_buttons' );
-        add_filter( 'tiny_mce_before_init', 'tinymce_workaround' );
+        add_filter( 'tiny_mce_before_init', 'wp_googoose_tinymce_workaround' );
 }
 
 # http://wordpress.stackexchange.com/questions/83997/tinymce-duplicates-previous-block-element-when-pressing-return-visual-editor
-function tinymce_workaround( $in ) {
+function wp_googoose_tinymce_workaround( $in ) {
     $in['force_br_newlines'] = true;
     $in['force_p_newlines'] = false;
     $in['forced_root_block'] = '';
@@ -215,8 +203,8 @@ function wp_googoose_tinymce_register_buttons( $buttons ) {
     return $buttons;
 }
 
-function footer() {
-    $gg = get_option('wp_googoose_options', get_default_options());
+function wp_googoose_footer() {
+    $gg = get_option('wp_googoose_options', wp_googoose_get_default_options());
     foreach( $gg as $k => $v ) {
         $gg[$k] = str_replace( 'in', '|', $v );
         $gg[$k] = trim(preg_replace( '/(in|[^0-9\. \|])/SU', '', $gg[$k] ));
@@ -232,10 +220,10 @@ value='<?php echo json_encode($gg); ?>' />
 }
 
 # control logic
-function do_main() {
+function wp_googoose_do_main() {
     # admin tasks
     if( is_admin() ) {
-        add_action( 'admin_enqueue_scripts', 'wp_enqueue_admin' );    
+        add_action( 'admin_enqueue_scripts', 'wp_googoose_enqueue_admin' );    
         # http://ottopress.com/2009/wordpress-settings-api-tutorial/
         # adds the settings page
         add_action('admin_menu', 'wp_googoose_admin_add_page');
@@ -251,7 +239,7 @@ function do_main() {
     # add tinymce functionality
     # http://code.tutsplus.com/tutorials/guide-to-creating-your-own-wordpress-editor-buttons--wp-30182
     add_action( 'init', 'wp_googoose_tinymce' );
-    add_action( 'wp_footer', 'footer' );
+    add_action( 'wp_footer', 'wp_googoose_footer' );
 }
 
 
