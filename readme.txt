@@ -23,7 +23,7 @@ e.g.
 1. Activate the plugin through the 'Plugins' screen in WordPress
 1. Use the Settings->WP GooGoose Name screen to configure the plugin
 
-= Frequently Asked Questions ==
+= Frequently Asked Questions =
 
 = How do I use this plugin? =
 
