@@ -29,6 +29,8 @@ e.g.
 
 Simply set it up in the settings tab, then add or edit an existing post/page, and notice that the editor will now have some new buttons. The basic one is the 'Googoosify' button. If you click that the post/page will display a 'MS Word' button below it that allows users to download the content to Microsoft Word. There are other buttons for headers, and footers, etc.
 
+If something doesn't look like it's working right, it's probably a good idea to add some content before using any if the googoose options.
+
 == Screenshots ==
 
 1. WP GooGoose in action

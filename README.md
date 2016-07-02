@@ -1,3 +1,5 @@
+![WP GooGoose in the WordPress plugin directory](https://wordpress.org/plugins/wp-googoose/)
+
 === WP GooGoose ===
 Contributors: aadel112
 Tags: Microsoft Word, MS Word, Word Document, Document, Generate, Automate, HTML, HTML to Word
