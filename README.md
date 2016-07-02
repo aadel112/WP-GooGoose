@@ -1,4 +1,5 @@
-![WP GooGoose in the WordPress plugin directory](https://wordpress.org/plugins/wp-googoose/)
+#WP GooGoose in the WordPress plugin directory
+https://wordpress.org/plugins/wp-googoose/)
 
 === WP GooGoose ===
 Contributors: aadel112
