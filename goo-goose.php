@@ -3,7 +3,7 @@
  * Plugin Name: WP GooGoose
  * Plugin URI: http://aadel112.com
  * Description: This plugin makes it possible to generate Microsoft word documents from html templates, and data in you database and/or from other plugins
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Aaron Adel
  * Author URI: http://aadel112.com
  * License: GPL 3.0
